@@ -8,7 +8,7 @@ body {
     font-family: 'Cabinet Grotesk', sans-serif;
     overflow-x: hidden;
     background-color: #ffffff;
-     min-height:100vh;
+    height:5024px;
 }
 .container {
     max-width:1140px;
