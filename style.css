@@ -1288,85 +1288,349 @@ nav a:hover {
 }
 
 
-@media (max-width: 1024px){
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
 
-    .container{
-        max-width: 90%;
-    }
+/* Laptop (1440px & 1366px) */
+@media (max-width: 1440px) {
+  .stat-card-2 {
+    right: 0;
+  }
 
-    .navbar-content{
-        gap:20px;
-    }
+  .stat-card-3 {
+    left: -24px;
+  }
+}
 
-    nav ul{
-        gap:20px;
-    }
+/* Tablet di ukuran 1024px */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 32px;
+  }
 
-    .hero{
-        min-height:auto;
-        padding:60px 0;
-    }
+  /* Header mau ke hamburger */
+  .hamburger {
+    display: flex;
+  }
 
-    .hero-content{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-    }
+  .header-btn {
+    display: none;
+  }
 
-    .left{
-        padding-top:40px;
-    }
+  .nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 24px;
+    left: 24px;
+    display: none;
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 20px 40px rgba(4, 0, 37, 0.2);
+  }
 
-    .left h1{
-        font-size:56px;
-        max-width:100%;
-        height:auto;
-    }
+  .nav.is-open {
+    display: block;
+  }
 
-    .left p{
-        max-width:100%;
-    }
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 
-    .btn-group{
-        justify-content:center;
-        margin:30px auto;
-    }
+  .nav-link {
+    color: var(--dark);
+  }
 
-    .student-reviews{
-        margin:40px auto 0;
-        align-items:center;
-    }
+  .nav-link.active,
+  .nav-link:hover {
+    color: var(--purple);
+  }
 
-    .right{
-        position:relative;
-        top:0;
-        right:0;
-        transform:none;
-        margin-top:60px;
-        max-width:500px;
-        width:100%;
-        height:auto;
-    }
+  /* Hero */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding-top: 140px;
+  }
 
-    .hero-img{
-        width:100%;
-        height:auto;
-    }
+  .hero-title {
+    font-size: 44px;
+  }
 
-    .card1{
-        left:30px;
-        top:40px;
-    }
+  .hero-content {
+    padding-bottom: 0;
+  }
 
-    .card2{
-        left:0;
-        top:330px;
-    }
+  .hero-image {
+    max-width: 460px;
+    margin: 40px auto 0;
+    height: auto;
+    width: 100%;
+  }
 
-    .card3{
-        left:260px;
-        top:220px;
-    }
+  .stat-card-1 {
+    top: 12px;
+    left: 0;
+  }
 
+  .stat-card-2 {
+    top: 42%;
+    right: 0;
+  }
+
+  .stat-card-3 {
+    bottom: 16px;
+    left: 0;
+  }
+
+  .hero-image > img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .stat-card {
+    padding: 16px 24px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+  }
+
+  .stat-card-3 {
+    left: 0;
+  }
+
+  /* Course cards 2  */
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 2 kolom*/
+  .about-inner,
+  .benefits-inner,
+  .owner-inner,
+  .testimonial-inner {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .about-content {
+    padding: 80px 0 0;
+  }
+
+  .about-image {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .about-image > img {
+    display: block;
+    height: auto;
+  }
+
+  .benefits,
+  .owner,
+  .testimonial,
+  .teacher {
+    padding: 80px 0;
+  }
+
+  /* Teacher */
+  .teacher-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .teacher-item {
+    flex: 0 0 220px;
+  }
+
+  /* Footer 2  */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet di ukuran 768px */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-img {
+    height: 280px;
+  }
+
+  .benefits-grid {
+    gap: 40px 24px;
+  }
+
+  .owner-video {
+    min-height: 380px;
+    padding: 32px;
+  }
+
+  .owner-video-title {
+    font-size: 22px;
+  }
+
+  .owner-play {
+    width: 72px;
+    height: 72px;
+  }
+
+  .teacher-card {
+    max-width: 200px;
+    padding: 16px 20px;
+  }
+
+  .teacher-card h3 {
+    font-size: 16px;
+  }
+
+  .teacher-card p {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+
+  /* Testimonial */
+  .testimonial-cards {
+    padding-bottom: 210px;
+  }
+
+  .testimonial-card {
+    max-width: 52%;
+    padding: 14px;
+  }
+
+  .testimonial-card-yellow {
+    bottom: 95px;
+  }
+
+  .testimonial-profile img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .testimonial-profile h3 {
+    font-size: 13px;
+  }
+
+  .testimonial-profile p {
+    font-size: 11px;
+  }
+
+  .testimonial-text {
+    margin-top: 8px;
+    padding-left: 0;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .partners {
+    padding: 64px 0;
+  }
+
+  .partners-inner {
+    gap: 32px;
+  }
+
+  .partners-inner img {
+    height: 32px;
+  }
+}
+
+/* Mobile di ukuran 576px */
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 28px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    white-space: normal;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .stat-card {
+    padding: 12px 16px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  .teacher-card {
+    max-width: 150px;
+    padding: 12px 16px;
+  }
+
+  .teacher-card h3 {
+    font-size: 14px;
+  }
+
+  .teacher-card p {
+    font-size: 11px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-actions {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer {
+    padding: 72px 0 40px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-copyright {
+    margin-top: 56px;
+    text-align: center;
+  }
+}
+
+/* Mobile s di ukuron 375px */
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .btn {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
+  .testimonial-text {
+    padding-left: 0;
+  }
 }
