@@ -4,11 +4,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    overflow-x: hidden; /* PERBAIKAN: jaring pengaman lintas browser agar tidak ada horizontal scroll */
+}
 body {
     font-family: 'Cabinet Grotesk', sans-serif;
     overflow-x: hidden;
     background-color: #ffffff;
-    height:5024px;
+    min-height: 100vh; /* PERBAIKAN: sebelumnya height:5024px (hardcode) menyebabkan white space di bawah halaman */
 }
 .container {
     max-width:1140px;
@@ -874,6 +877,7 @@ nav a:hover {
     min-height: 620px;
     padding-top: 120px;
     padding-bottom: 120px;
+    overflow-x: hidden; /* PERBAIKAN: mencegah .testi-purple & .testimonial-img (yang sengaja "bleed" keluar batas 570px) memicu horizontal scroll di layar sempit */
 }
 .testimonial-content {
     display: flex;
@@ -1288,349 +1292,221 @@ nav a:hover {
 }
 
 
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
+/* =====================================================================
+   PERBAIKAN RESPONSIVE — Semua aturan di sini hanya berlaku di dalam
+   media query, sehingga tampilan desktop 1440px (dan 1366px) TIDAK
+   berubah.
+   ===================================================================== */
 
-/* Laptop (1440px & 1366px) */
-@media (max-width: 1440px) {
-  .stat-card-2 {
-    right: 0;
-  }
-
-  .stat-card-3 {
-    left: -24px;
-  }
+/* ---------------------------------------------------------------
+   Safety net: cegah konten mepet tepi layar begitu container
+   sudah tidak lagi di-cap oleh max-width:1140px (viewport < 1140px)
+--------------------------------------------------------------- */
+@media (max-width: 1140px) {
+    .container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
 }
 
-/* Tablet di ukuran 1024px */
+/* ---------------------------------------------------------------
+   1366px — di rentang 1141px–1366px, .container masih 1140px
+   (di-cap otomatis oleh max-width bawaan) sehingga layout SAMA
+   dengan 1440px. Tambahan ini hanya jaga-jaga agar dekorasi kanan
+   hero tidak mepet ke tepi browser.
+--------------------------------------------------------------- */
+@media (max-width: 1366px) and (min-width: 1141px) {
+    .right {
+        right: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------
+   TABLET — max-width: 1024px
+   Perbaikan utama: melepas position:absolute pada elemen hero/
+   teacher/testimonial agar ikut alur flex-column, dan menormalkan
+   width/height yang sebelumnya fixed px.
+--------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .section-title {
-    font-size: 32px;
-  }
 
-  /* Header mau ke hamburger */
-  .hamburger {
-    display: flex;
-  }
+    body { height: auto; }
 
-  .header-btn {
-    display: none;
-  }
+    .container { padding-left: 24px; padding-right: 24px; }
 
-  .nav {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 24px;
-    left: 24px;
-    display: none;
-    padding: 24px;
-    border-radius: 16px;
-    background: var(--white);
-    box-shadow: 0 20px 40px rgba(4, 0, 37, 0.2);
-  }
+    .navbar-content { padding: 0; }
 
-  .nav.is-open {
-    display: block;
-  }
+    /* HERO */
+    .hero { min-height: auto; padding-bottom: 60px; }
+    .left { padding-top: 60px; }
+    .left h1 { height: auto; }
+    .tagline { margin-top: 0; }
 
-  .nav-list {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
+    .right {
+        position: relative;
+        top: auto; right: auto; left: auto;
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+        transform: none;
+        margin: 40px auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-img { position: static; height: auto; }
 
-  .nav-link {
-    color: var(--dark);
-  }
+    .card {
+        position: static;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin: 10px 0;
+        padding: 16px 0;
+    }
 
-  .nav-link.active,
-  .nav-link:hover {
-    color: var(--purple);
-  }
+    /* COURSE */
+    .course-card { width: 100%; max-width: 500px; }
 
-  /* Hero */
-  .hero-inner {
-    grid-template-columns: 1fr;
-    padding-top: 140px;
-  }
+    /* TEACHER / ABOUT */
+    .teacher { height: auto; padding-bottom: 60px; }
+    .teacher-image {
+        position: relative;
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+        margin: 40px auto 0;
+    }
+    .teacher-bg { display: none; }
+    .guru-girl, .guru-man {
+        position: relative;
+        max-width: 60%;
+        width: 100%;
+        height: auto;
+        left: auto; top: auto;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .arrow-vector { display: none; }
+    .teacher-card {
+        position: static;
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        margin: 12px auto;
+        padding: 20px;
+    }
 
-  .hero-title {
-    font-size: 44px;
-  }
+    /* BENEFIT */
+    .benefit { padding: 60px 0; }
+    .benefit-content { height: auto; }
+    .benefit-left,
+    .benefit-right { width: 100%; max-width: 100%; height: auto; }
+    .item-1, .item-2, .item-3, .item-4 { width: 100%; max-width: 100%; height: auto; }
+    .benefit-right h2 { width: 100%; height: auto; }
+    .benefit-left p, .benefit-right p { width: 100%; height: auto; }
 
-  .hero-content {
-    padding-bottom: 0;
-  }
+    /* OWNER */
+    .owner { height: auto; padding: 60px 0; }
+    .owner-content { height: auto; }
+    .owner-left, .owner-right {
+        width: 100%; max-width: 500px; height: auto; margin: 0 auto;
+    }
+    .owner-left h2, .owner-left p { width: 100%; height: auto; }
+    .owner-right img { width: 100%; max-width: 500px; height: auto; }
 
-  .hero-image {
-    max-width: 460px;
-    margin: 40px auto 0;
-    height: auto;
-    width: 100%;
-  }
+    /* TESTIMONIAL */
+    .testimonial { min-height: auto; padding: 60px 0; }
+    .testimonial-content { min-height: auto; }
+    .testimonial-left { width: 100%; max-width: 500px; top: 0; margin: 0 auto; }
+    .testimonial-left h2, .testimonial-left p { width: 100%; height: auto; }
+    .testimonial-right {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        min-height: 480px;
+        margin: 40px auto 0;
+    }
+    .testimonial-img {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 0 auto;
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+    .arrow-testi-yellow, .arrow-testi-purple { display: none; }
+    .testi-card {
+        position: relative;
+        width: 90%;
+        max-width: 320px;
+        left: auto !important;
+        top: auto !important;
+        margin: 16px auto;
+    }
 
-  .stat-card-1 {
-    top: 12px;
-    left: 0;
-  }
+    /* TEACHER LIST */
+    .teacher-list { height: auto; padding: 60px 0; }
+    .contain-teacher { height: auto; }
+    .teacher-wrapper { flex-wrap: wrap; gap: 16px; }
 
-  .stat-card-2 {
-    top: 42%;
-    right: 0;
-  }
-
-  .stat-card-3 {
-    bottom: 16px;
-    left: 0;
-  }
-
-  .hero-image > img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin-left: 0;
-  }
-
-  .stat-card {
-    padding: 16px 24px;
-  }
-
-  .stat-value {
-    font-size: 24px;
-  }
-
-  .stat-label {
-    font-size: 14px;
-  }
-
-  .stat-card-3 {
-    left: 0;
-  }
-
-  /* Course cards 2  */
-  .course-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* 2 kolom*/
-  .about-inner,
-  .benefits-inner,
-  .owner-inner,
-  .testimonial-inner {
-    grid-template-columns: 1fr;
-    gap: 56px;
-  }
-
-  .about-content {
-    padding: 80px 0 0;
-  }
-
-  .about-image {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .about-image > img {
-    display: block;
-    height: auto;
-  }
-
-  .benefits,
-  .owner,
-  .testimonial,
-  .teacher {
-    padding: 80px 0;
-  }
-
-  /* Teacher */
-  .teacher-list {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 8px;
-  }
-
-  .teacher-item {
-    flex: 0 0 220px;
-  }
-
-  /* Footer 2  */
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    /* FOOTER */
+    .footer { height: auto; padding-bottom: 40px; }
+    .footer-content { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .footer-col p { width: 100%; height: auto; }
+    .footer-col a { width: auto; height: auto; }
+    .copyright { margin-left: 0; text-align: left; margin-top: 20px; }
 }
 
-/* Tablet di ukuran 768px */
+/* ---------------------------------------------------------------
+   MOBILE BESAR — max-width: 768px
+--------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 36px;
-  }
-
-  .course-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .course-img {
-    height: 280px;
-  }
-
-  .benefits-grid {
-    gap: 40px 24px;
-  }
-
-  .owner-video {
-    min-height: 380px;
-    padding: 32px;
-  }
-
-  .owner-video-title {
-    font-size: 22px;
-  }
-
-  .owner-play {
-    width: 72px;
-    height: 72px;
-  }
-
-  .teacher-card {
-    max-width: 200px;
-    padding: 16px 20px;
-  }
-
-  .teacher-card h3 {
-    font-size: 16px;
-  }
-
-  .teacher-card p {
-    margin-top: 6px;
-    font-size: 12px;
-  }
-
-  /* Testimonial */
-  .testimonial-cards {
-    padding-bottom: 210px;
-  }
-
-  .testimonial-card {
-    max-width: 52%;
-    padding: 14px;
-  }
-
-  .testimonial-card-yellow {
-    bottom: 95px;
-  }
-
-  .testimonial-profile img {
-    width: 28px;
-    height: 28px;
-  }
-
-  .testimonial-profile h3 {
-    font-size: 13px;
-  }
-
-  .testimonial-profile p {
-    font-size: 11px;
-  }
-
-  .testimonial-text {
-    margin-top: 8px;
-    padding-left: 0;
-    font-size: 11px;
-    line-height: 1.5;
-  }
-
-  .partners {
-    padding: 64px 0;
-  }
-
-  .partners-inner {
-    gap: 32px;
-  }
-
-  .partners-inner img {
-    height: 32px;
-  }
+    .left h1 { font-size: 40px; height: auto; }
+    .benefit-left { grid-template-columns: 1fr; }
+    .footer-content { grid-template-columns: 1fr; }
+    .partner-box { flex-wrap: wrap; justify-content: center; gap: 24px; }
+    .partner-box img { max-height: 28px; }
 }
 
-/* Mobile di ukuran 576px */
-@media (max-width: 576px) {
-  .section-title {
-    font-size: 28px;
-  }
+/* ---------------------------------------------------------------
+   MOBILE — max-width: 425px
+--------------------------------------------------------------- */
+@media (max-width: 425px) {
+    .container { padding-left: 16px; padding-right: 16px; }
 
-  .hero-title {
-    font-size: 32px;
-    white-space: normal;
-  }
+    .left h1 { font-size: 32px; }
+    .btn-group { flex-direction: column; gap: 16px; width: 100%; height: auto; }
+    .yellow, .play-video { width: 100%; justify-content: center; }
+    .student-reviews { margin: 24px auto 0; align-items: center; }
 
-  .hero-actions {
-    flex-wrap: wrap;
-    gap: 24px;
-  }
+    .right { max-width: 100%; }
+    .card { width: 100%; max-width: 260px; }
 
-  .stat-card {
-    padding: 12px 16px;
-  }
+    .course-card { max-width: 100%; }
 
-  .stat-value {
-    font-size: 20px;
-  }
+    .teacher-image { max-width: 100%; }
+    .guru-girl, .guru-man { max-width: 80%; margin: 0 auto; }
 
-  .stat-label {
-    font-size: 12px;
-  }
+    .owner-right img { max-width: 100%; }
 
-  .teacher-card {
-    max-width: 150px;
-    padding: 12px 16px;
-  }
+    .testimonial-right { max-width: 100%; }
+    .testi-card { width: 100%; max-width: 280px; }
 
-  .teacher-card h3 {
-    font-size: 14px;
-  }
+    .teacher-item img { width: 140px; height: 154px; }
 
-  .teacher-card p {
-    font-size: 11px;
-  }
-
-  .benefits-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .benefits-actions {
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
-  .footer {
-    padding: 72px 0 40px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .footer-copyright {
-    margin-top: 56px;
-    text-align: center;
-  }
+    .footer-logo img { width: 30px; height: 28px; }
 }
 
-/* Mobile s di ukuron 375px */
+/* ---------------------------------------------------------------
+   MOBILE KECIL — max-width: 375px
+--------------------------------------------------------------- */
 @media (max-width: 375px) {
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .btn {
-    padding: 14px 24px;
-    font-size: 15px;
-  }
-
-  .testimonial-text {
-    padding-left: 0;
-  }
+    .left h1 { font-size: 28px; }
+    .tagline { font-size: 12px; }
+    .card h2 { font-size: 20px; }
+    .card p { font-size: 12px; }
+    .footer-logo h3 { font-size: 13px; }
+    .subscribe input { width: 120px; }
 }
