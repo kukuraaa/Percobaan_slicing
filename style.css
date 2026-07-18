@@ -5,13 +5,13 @@
     box-sizing: border-box;
 }
 html {
-    overflow-x: hidden; /* PERBAIKAN: jaring pengaman lintas browser agar tidak ada horizontal scroll */
+    overflow-x: hidden; 
 }
 body {
     font-family: 'Cabinet Grotesk', sans-serif;
     overflow-x: hidden;
     background-color: #ffffff;
-    min-height: 100vh; /* PERBAIKAN: sebelumnya height:5024px (hardcode) menyebabkan white space di bawah halaman */
+    min-height: 100vh; 
 }
 .container {
     max-width:1140px;
@@ -877,7 +877,7 @@ nav a:hover {
     min-height: 620px;
     padding-top: 120px;
     padding-bottom: 120px;
-    overflow-x: hidden; /* PERBAIKAN: mencegah .testi-purple & .testimonial-img (yang sengaja "bleed" keluar batas 570px) memicu horizontal scroll di layar sempit */
+    overflow-x: hidden; 
 }
 .testimonial-content {
     display: flex;
@@ -1291,17 +1291,6 @@ nav a:hover {
     bottom: -4px;
 }
 
-
-/* =====================================================================
-   PERBAIKAN RESPONSIVE — Semua aturan di sini hanya berlaku di dalam
-   media query, sehingga tampilan desktop 1440px (dan 1366px) TIDAK
-   berubah.
-   ===================================================================== */
-
-/* ---------------------------------------------------------------
-   Safety net: cegah konten mepet tepi layar begitu container
-   sudah tidak lagi di-cap oleh max-width:1140px (viewport < 1140px)
---------------------------------------------------------------- */
 @media (max-width: 1140px) {
     .container {
         padding-left: 24px;
@@ -1309,24 +1298,11 @@ nav a:hover {
     }
 }
 
-/* ---------------------------------------------------------------
-   1366px — di rentang 1141px–1366px, .container masih 1140px
-   (di-cap otomatis oleh max-width bawaan) sehingga layout SAMA
-   dengan 1440px. Tambahan ini hanya jaga-jaga agar dekorasi kanan
-   hero tidak mepet ke tepi browser.
---------------------------------------------------------------- */
 @media (max-width: 1366px) and (min-width: 1141px) {
     .right {
         right: 12px;
     }
 }
-
-/* ---------------------------------------------------------------
-   TABLET — max-width: 1024px
-   Perbaikan utama: melepas position:absolute pada elemen hero/
-   teacher/testimonial agar ikut alur flex-column, dan menormalkan
-   width/height yang sebelumnya fixed px.
---------------------------------------------------------------- */
 @media (max-width: 1024px) {
 
     body { height: auto; }
