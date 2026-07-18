@@ -52,53 +52,32 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     var teacherWrapper = document.querySelector('.teacher-wrapper');
     var teacherItems = document.querySelectorAll('.teacher-wrapper .teacher-item');
     var prevButton = document.querySelector('.arrow-prev');
     var nextButton = document.querySelector('.arrow-next');
 
-    if (teacherItems.length && prevButton && nextButton) {
+    if (teacherWrapper && teacherItems.length && prevButton && nextButton) {
 
-        var activeIndex = 0;
-        teacherItems.forEach(function (item, i) {
-            if (item.classList.contains('active')) {
-                activeIndex = i;
-            }
-        });
-        function setActiveTeacher(index) {
-            teacherItems.forEach(function (item, i) {
-                item.classList.toggle('active', i === index);
+        function scrollTeachers(direction) {
+            var firstItem = teacherItems[0];
+            var itemWidth = firstItem.getBoundingClientRect().width;
+            var wrapperStyle = window.getComputedStyle(teacherWrapper);
+            var gap = parseFloat(wrapperStyle.columnGap || wrapperStyle.gap) || 0;
+
+            teacherWrapper.scrollBy({
+                left: direction * (itemWidth + gap),
+                behavior: 'smooth'
             });
-            if (teacherWrapper) {
-                var target = teacherItems[index];
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    inline: 'center',
-                    block: 'nearest'
-                });
-            }
         }
+
         prevButton.addEventListener('click', function () {
-            activeIndex = (activeIndex - 1 + teacherItems.length) % teacherItems.length;
-            setActiveTeacher(activeIndex);
+            scrollTeachers(-1);
         });
 
         nextButton.addEventListener('click', function () {
-            activeIndex = (activeIndex + 1) % teacherItems.length;
-            setActiveTeacher(activeIndex);
+            scrollTeachers(1);
         });
-
-        function centerActiveInstantly() {
-            if (window.innerWidth <= 1024) {
-                var target = teacherItems[activeIndex];
-                target.scrollIntoView({
-                    behavior: 'auto',
-                    inline: 'center',
-                    block: 'nearest'
-                });
-            }
-        }
-        window.addEventListener('load', centerActiveInstantly);
-        window.addEventListener('resize', centerActiveInstantly);
     }
 });
