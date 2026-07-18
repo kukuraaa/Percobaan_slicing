@@ -6,7 +6,7 @@
     <title>Coding Learned</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
             <h2>Coding Learned</h2>
         </div>
 
-        <nav>
+        <nav id="navMenu">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Study Program</a></li>
@@ -28,9 +28,16 @@
                 <li><a href="#">News</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li class="nav-reg-mobile"><button class="nav-reg">Registration</button></li>
             </ul>
         </nav>
-        <button class="nav-reg">Registration</button>
+        <button class="nav-reg nav-reg-desktop">Registration</button>
+
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
 
@@ -319,7 +326,7 @@
         </h2>
         <p>Lorem ipsum mögunde seråpp pos. Faplasade jer och titeck</p>
         <div class="teacher-wrapper">
-            <button class="arrow">❮</button>
+            <button class="arrow arrow-prev" aria-label="Previous teacher">❮</button>
 
             <div class="teacher-item">
                 <img src="image/guru (6).png" alt="">
@@ -350,7 +357,7 @@
                 <h4>Dianne Russell</h4>
                 <span>Math Teacher</span>
             </div>
-            <button class="arrow">❯</button>
+            <button class="arrow arrow-next" aria-label="Next teacher">❯</button>
         </div>
         <button class="see-more">See More</button>
     </div>
