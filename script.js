@@ -52,32 +52,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    var teacherWrapper = document.querySelector('.teacher-wrapper');
-    var teacherItems = document.querySelectorAll('.teacher-wrapper .teacher-item');
-    var prevButton = document.querySelector('.arrow-prev');
-    var nextButton = document.querySelector('.arrow-next');
-
-    if (teacherWrapper && teacherItems.length && prevButton && nextButton) {
-
-        function scrollTeachers(direction) {
-            var firstItem = teacherItems[0];
-            var itemWidth = firstItem.getBoundingClientRect().width;
-            var wrapperStyle = window.getComputedStyle(teacherWrapper);
-            var gap = parseFloat(wrapperStyle.columnGap || wrapperStyle.gap) || 0;
-
-            teacherWrapper.scrollBy({
-                left: direction * (itemWidth + gap),
-                behavior: 'smooth'
-            });
-        }
-
-        prevButton.addEventListener('click', function () {
-            scrollTeachers(-1);
-        });
-
-        nextButton.addEventListener('click', function () {
-            scrollTeachers(1);
-        });
-    }
 });
