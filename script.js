@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ===== HAMBURGER / MOBILE NAV =====
-    var hamburgerBtn = document.getElementById('hamburgerBtn');
-    var navMenu = document.getElementById('navMenu');
+    var hamburgerBtn = document.getElementById('hamburgerBtn'); //ngambil tombol hambur dari html 
+    var navMenu = document.getElementById('navMenu'); //navigation 
 
     if (hamburgerBtn && navMenu) {
 
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleMenu();
         });
 
+        // menutup menu pada saat salah satu menu navigasi diklik
         var navLinks = navMenu.querySelectorAll('a');
         navLinks.forEach(function (link) {
             link.addEventListener('click', function () {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
+        // untuk meenutup menu jika pengguna klik di luar menu
         document.addEventListener('click', function (e) {
             var isClickInsideMenu = navMenu.contains(e.target);
             var isClickOnButton = hamburgerBtn.contains(e.target);
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
+        // pada saat layar berubah ke ukuran desktop, ini tuh untuk menutup menu hamburger
         window.addEventListener('resize', function () {
             if (window.innerWidth > 1024) {
                 closeMenu();
