@@ -1853,10 +1853,10 @@ nav a:hover {
     .teacher-item.active { max-width: 260px; }
     .teacher-title { font-size: 28px; }
     .coding-text img, .vektor-sajalah img, .quality-text img, .benefit-line img {
-        width: 62px;
+        width: 62px; object-fit: contain;
     }
 
-    .subscribe { max-width: 240px; }
+    .subscribe { max-width: 390px; }
     .copyright { width: 100%; text-align: left; }
 }
 
@@ -1924,7 +1924,7 @@ nav a:hover {
     .teacher-title img { width: 46px; }
     .teacher-image { max-width: 220px; }
     .coding-text img, .vektor-sajalah img, .quality-text img, .benefit-line img {
-        width: 48px;
+        width: 48px; object-fit: contain;
     }
 
     .benefit-right h2, .benefit-title { font-size: 24px; }
