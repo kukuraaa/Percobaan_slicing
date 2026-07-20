@@ -1935,4 +1935,5 @@ nav a:hover {
     .teacher-item.active { max-width: 180px; }
 
     .footer-col p { font-size: 13px; }
+    .subscribe { max-width: 310px; width: 100%; }
 }
